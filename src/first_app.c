@@ -6,6 +6,8 @@ const int LVE_FIRST_APP_HEIGHT = 600;
 void lve_first_app_create(LveFirstApp *app) {
   lve_window_create(&app->window, LVE_FIRST_APP_WIDTH, LVE_FIRST_APP_HEIGHT,
                     "Hello Vulkan!");
+  lve_pipeline_create(&app->pipeline, "shaders/simple_shader.vert.spv",
+                      "shaders/simple_shader.frag.spv");
 }
 
 void lve_first_app_destroy(const LveFirstApp *app) {

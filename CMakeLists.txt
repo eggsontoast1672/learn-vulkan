@@ -9,9 +9,11 @@ find_package(glfw3 CONFIG REQUIRED)
 add_executable(
   lve
   include/lve/first_app.h
+  include/lve/pipeline.h
   include/lve/window.h
   src/first_app.c
   src/main.c
+  src/pipeline.c
   src/window.c
 )
 
