@@ -1,25 +1,17 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
 
-project(LittleVulkanEngine LANGUAGES C)
+project(LearnVulkan LANGUAGES CXX)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+find_package(PkgConfig)
 
-find_package(glfw3 CONFIG REQUIRED)
+pkg_check_modules(GLFW REQUIRED glfw3)
+pkg_check_modules(VULKAN REQUIRED vulkan)
 
-add_executable(
-  lve
-  include/lve/first_app.h
-  include/lve/pipeline.h
-  include/lve/window.h
-  src/first_app.c
-  src/main.c
-  src/pipeline.c
-  src/window.c
-)
+add_executable(learnvulkan src/main.cpp)
 
-set_property(TARGET lve PROPERTY C_STANDARD 11)
-set_property(TARGET lve PROPERTY C_STANDARD_REQUIRED ON)
-set_property(TARGET lve PROPERTY C_EXTENSIONS OFF)
+set_property(TARGET learnvulkan PROPERTY CXX_STANDARD 20)
+set_property(TARGET learnvulkan PROPERTY CXX_STANDARD_REQUIRED ON)
+set_property(TARGET learnvulkan PROPERTY CXX_EXTENSIONS OFF)
 
-target_include_directories(lve PRIVATE include)
-target_link_libraries(lve PRIVATE glfw)
+target_compile_definitions(learnvulkan PRIVATE GLFW_INCLUDE_VULKAN)
+target_link_libraries(learnvulkan PRIVATE ${GLFW_LIBRARIES} ${VULKAN_LIBRARIES})
