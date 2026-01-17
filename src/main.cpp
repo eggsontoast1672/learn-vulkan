@@ -1,13 +1,11 @@
-#include "lvk/instance.hpp"
 #include <cstring>
-#include <format>
 #include <iostream>
-#include <stdexcept>
-#include <vector>
 
 #include <GLFW/glfw3.h>
 
 #include <glm/glm.hpp>
+
+#include "lvk/instance.hpp"
 
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
