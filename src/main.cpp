@@ -5,6 +5,7 @@
 
 #include <glm/glm.hpp>
 
+#include "lvk/device.hpp"
 #include "lvk/instance.hpp"
 
 const uint32_t WIDTH = 800;
@@ -12,9 +13,12 @@ const uint32_t HEIGHT = 600;
 
 class HelloTriangleApplication {
 public:
+  HelloTriangleApplication()
+      : m_physicalDevice(m_instance.getHandle()),
+        m_logicalDevice(m_physicalDevice.getHandle()) {}
+
   void run() {
     initWindow();
-    initVulkan();
     mainLoop();
     cleanup();
   }
@@ -23,6 +27,8 @@ private:
   GLFWwindow *m_window;
 
   lvk::Instance m_instance;
+  lvk::PhysicalDevice m_physicalDevice;
+  lvk::LogicalDevice m_logicalDevice;
 
   /// Initialize the window.
   void initWindow() {
@@ -32,8 +38,6 @@ private:
 
     m_window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
   }
-
-  void initVulkan() {}
 
   /// Start the main loop.
   void mainLoop() {

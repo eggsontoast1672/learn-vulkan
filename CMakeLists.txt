@@ -9,11 +9,13 @@ pkg_check_modules(VULKAN REQUIRED vulkan)
 
 add_executable(
   learnvulkan
+  include/lvk/device.hpp
   include/lvk/instance.hpp
-  include/lvk/physical_device.hpp
+  include/lvk/queue.hpp
+  src/device.cpp
   src/instance.cpp
   src/main.cpp
-  src/physical_device.cpp
+  src/queue.cpp
 )
 
 set_property(TARGET learnvulkan PROPERTY CXX_STANDARD 20)

@@ -18,7 +18,10 @@ public:
   ~Instance();
 
   Instance(const Instance &) = delete;
-  void operator=(const Instance &) = delete;
+  Instance &operator=(const Instance &) = delete;
+
+  /// Get the underlying instance pointer.
+  [[nodiscard]] inline auto getHandle() const -> VkInstance { return m_instance; }
 
 private:
   VkInstance m_instance;
